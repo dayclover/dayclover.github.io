@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.cloverDday.app",
+      "sha256_cert_fingerprints": [
+        "1C:F3:E2:AB:EE:FE:A6:32:4E:8C:EE:DA:EC:C2:D1:4F:6E:1E:14:8C:BC:8B:C0:33:E7:D5:E0:0A:E8:F2:CF:3A"
+      ]
+    }
+  }
+]
