@@ -84,23 +84,34 @@
       document.getElementById("profileImage").src = profileImage;
 
       const openAppButton = document.getElementById("openAppButton");
-
       openAppButton.addEventListener("click", () => {
         const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
         const isAndroid = /Android/i.test(navigator.userAgent);
 
-        let appLink = "dayclover://"; // 앱 스킴(URI)로 앱 실행
-        let storeLink = isIOS
-          ? "https://apps.apple.com/kr/app/6484269623" // iOS 앱스토어 링크
-          : "https://play.google.com/store/apps/details?id=com.cloverDday.app"; // Android 플레이스토어 링크
+        const appLink = "dayclover://"; // 앱 스킴
+        const storeLink = isIOS
+          ? "https://apps.apple.com/kr/app/6484269623" // iOS 앱스토어
+          : "https://play.google.com/store/apps/details?id=com.cloverDday.app"; // Android 플레이스토어
 
-        // 앱을 열기 시도
-        window.location.href = appLink;
+        if (isIOS) {
+          // iOS의 Universal Links를 사용한 우회 방법
+          const iframe = document.createElement("iframe");
+          iframe.style.display = "none";
+          iframe.src = appLink;
+          document.body.appendChild(iframe);
 
-        // 앱이 없으면 2초 후 스토어로 리다이렉트
-        setTimeout(() => {
-          window.location.href = storeLink;
-        }, 2000);
+          setTimeout(() => {
+            window.location.href = storeLink; // 앱이 없을 경우 스토어로 이동
+          }, 2000);
+        } else if (isAndroid) {
+          // Android에서 앱 스킴 실행
+          window.location.href = appLink;
+
+          // 앱이 없을 경우 2초 후 스토어로 이동
+          setTimeout(() => {
+            window.location.href = storeLink;
+          }, 2000);
+        }
       });
     </script>
   </body>
