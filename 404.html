@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+    <script>
+      // 요청된 경로를 해시(#)로 변환해 index.html로 리다이렉트
+      const redirectTo = window.location.pathname;
+      window.location.replace(`${window.location.origin}/#${redirectTo}`);
+    </script>
+  </head>
+  <body></body>
+</html>
